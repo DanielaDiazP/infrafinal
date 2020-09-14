@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angularfinal
+  labels:
+    app: angularfinal
+spec:
+  selector:
+    matchLabels:
+      app: angularfinal
+  template:
+    metadata:
+      labels:
+        app: angularfinal
+    spec:
+      containers:
+      - name: angular
+        image: DOCKER_IMAGE:TAG
+        ports:
+        - containerPort: 3000

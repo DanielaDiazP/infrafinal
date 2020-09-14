@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  labels:
+    app: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node
+          image: DOCKER_IMAGE:TAG
+          ports:
+          - containerPort: 8000
+          env:
+            - name: MONGO_DB
+              valueFrom:
+                  configMapKeyRef:
+                      name: db-config
+                      key: db_name
+            - name: MONGO_HOST
+              value: mongo
+            - name: MONGO_PORT
+              valueFrom:
+                  configMapKeyRef:
+                      name: db-config
+                      key: db_port
+            - name: PORT
+              value: 8000
