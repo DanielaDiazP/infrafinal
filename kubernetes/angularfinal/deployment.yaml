@@ -5,6 +5,7 @@ metadata:
   labels:
     app: angularfinal
 spec:
+  replicas: REPLICA
   selector:
     matchLabels:
       app: angularfinal

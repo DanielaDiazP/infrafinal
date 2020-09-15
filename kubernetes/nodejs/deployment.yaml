@@ -5,6 +5,7 @@ metadata:
   labels:
     app: node
 spec:
+  replicas: REPLICA
   selector:
     matchLabels:
       app: node
@@ -31,5 +32,3 @@ spec:
                   configMapKeyRef:
                       name: db-config
                       key: db_port
-            - name: PORT
-              value: 8000
