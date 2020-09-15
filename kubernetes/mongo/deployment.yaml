@@ -23,10 +23,10 @@ spec:
                 name: db-config
                 key: db_name
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgres-volume-mount
-          subPath: postgresdb
+        - mountPath: /data/db
+          name: mongo-volume-mount
+          subPath: mongodb
       volumes:
-      - name: postgres-volume-mount
+      - name: mongo-volume-mount
         persistentVolumeClaim:
-          claimName: postgres-pvc
+          claimName: mongo-pvc
