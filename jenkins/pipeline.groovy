@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage("Checkout app-code") {
             steps {
-               dir('app') {
+               dir('appfinal') {
                     git url:"${env.APP_REPO_URL}" , branch: "${version}"
                 } 
             }
@@ -20,7 +20,7 @@ pipeline {
          
          stage("Checkout deploy-code") {
             steps {
-               dir('deploy') {
+               dir('deployfinal') {
                     git url:"${env.INFRA_REPO_URL}" , branch: "master"
                 } 
             }
@@ -28,7 +28,7 @@ pipeline {
         
          stage("Build image") {
             steps {
-                dir('app') {
+                dir('appfinal') {
                     script {
                         dockerImage = docker.build("${env.DOCKER_IMAGE}:${tag}")
                     }
@@ -48,6 +48,7 @@ pipeline {
         
         stage('Deploy') {
             steps{
+                sh "sed -i 's:REPLICA:${replica}:g' ${DEPLOY_FOLDER}/deployment.yaml"
                 sh "sed -i 's:DOCKER_IMAGE:${env.DOCKER_IMAGE}:g' ${DEPLOY_FOLDER}/deployment.yaml"
                 sh "sed -i 's:TAG:${tag}:g' ${DEPLOY_FOLDER}/deployment.yaml"
                 
