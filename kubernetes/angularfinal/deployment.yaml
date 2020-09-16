@@ -19,3 +19,9 @@ spec:
         image: DOCKER_IMAGE:TAG
         ports:
         - containerPort: 3000
+        env:
+        - name: API
+          valueFrom:
+            configMapKeyRef:
+              name: angular-config
+              key: API
