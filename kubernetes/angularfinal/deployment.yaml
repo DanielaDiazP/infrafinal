@@ -17,6 +17,7 @@ spec:
       containers:
       - name: angular
         image: DOCKER_IMAGE:TAG
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:

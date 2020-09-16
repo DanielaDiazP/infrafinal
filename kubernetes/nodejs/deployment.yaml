@@ -17,6 +17,7 @@ spec:
       containers:
         - name: node
           image: DOCKER_IMAGE:TAG
+          imagePullPolicy: Always
           ports:
           - containerPort: 8000
           env:
