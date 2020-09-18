@@ -20,7 +20,7 @@ metadata:
   labels:
     app: ingress-router
 spec:
-  replicas: 3
+  replicas: REPLICA
   selector:
     matchLabels:
       app: ingress-router
@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: ingress-router
-        image: danieladiazp/ingress:1.0
+        image: DOCKER_IMAGE:TAG
         ports:
         - name: http
           containerPort: 80
